@@ -4,68 +4,63 @@
  */
 package modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author ikerr
  */
-
-
-
 public class Cita {
+
     private int id;
-    private String dniPaciente;
-    private String fecha;
-    private String hora;
-    private int idPersonal;
+    private String dni_paciente;
+    private String nombre;
+    private Date dia;
+    private double hora;
 
-    public Cita() {
-    }
+    public Cita() {}
 
-    public Cita(int id, String dniPaciente, String fecha, String hora, int idPersonal) {
+    public Cita(int id, String dni_paciente, String nombre, Date dia, double hora) {
         this.id = id;
-        this.dniPaciente = dniPaciente;
-        this.fecha = fecha;
+        this.dni_paciente = dni_paciente;
+        this.nombre = nombre;
+        this.dia = dia;
         this.hora = hora;
-        this.idPersonal = idPersonal;
     }
 
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getDniPaciente() {
-        return dniPaciente;
+    public String getDni_paciente() {
+        return dni_paciente;
+    }
+    public void setDni_paciente(String dni_paciente) {
+        this.dni_paciente = dni_paciente;
     }
 
-    public void setDniPaciente(String dniPaciente) {
-        this.dniPaciente = dniPaciente;
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getFecha() {
-        return fecha;
+    public Date getDia() {
+        return dia;
+    }
+    public void setDia(Date dia) {
+        this.dia = dia;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getHora() {
+    public double getHora() {
         return hora;
     }
-
-    public void setHora(String hora) {
+    public void setHora(double hora) {
         this.hora = hora;
     }
 
-    public int getIdPersonal() {
-        return idPersonal;
-    }
-
-    public void setIdPersonal(int idPersonal) {
-        this.idPersonal = idPersonal;
-    }
 }

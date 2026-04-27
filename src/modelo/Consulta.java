@@ -4,57 +4,59 @@
  */
 package modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author ikerr
  */
-
 public class Consulta {
+
     private int id;
-    private int idCita;
-    private String sintomas;
+    private String dni_paciente;
+    private Date fecha_consulta;
     private String diagnostico;
     private String tratamiento;
+    private String observaciones;
+    private int codigo_facultativo;
 
-    public Consulta() {
-    }
+    public Consulta() {}
 
-    public Consulta(int id, int idCita, String sintomas, String diagnostico, String tratamiento) {
+    public Consulta(int id, String dni_paciente, Date fecha_consulta, String diagnostico,
+                    String tratamiento, String observaciones, int codigo_facultativo) {
         this.id = id;
-        this.idCita = idCita;
-        this.sintomas = sintomas;
+        this.dni_paciente = dni_paciente;
+        this.fecha_consulta = fecha_consulta;
         this.diagnostico = diagnostico;
         this.tratamiento = tratamiento;
+        this.observaciones = observaciones;
+        this.codigo_facultativo = codigo_facultativo;
     }
 
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
 
-    public int getIdCita() {
-        return idCita;
+    public String getDni_paciente() {
+        return dni_paciente;
+    }
+    public void setDni_paciente(String dni_paciente) {
+        this.dni_paciente = dni_paciente;
     }
 
-    public void setIdCita(int idCita) {
-        this.idCita = idCita;
+    public Date getFecha_consulta() {
+        return fecha_consulta;
     }
-
-    public String getSintomas() {
-        return sintomas;
-    }
-
-    public void setSintomas(String sintomas) {
-        this.sintomas = sintomas;
+    public void setFecha_consulta(Date fecha_consulta) {
+        this.fecha_consulta = fecha_consulta;
     }
 
     public String getDiagnostico() {
         return diagnostico;
     }
-
     public void setDiagnostico(String diagnostico) {
         this.diagnostico = diagnostico;
     }
@@ -62,8 +64,22 @@ public class Consulta {
     public String getTratamiento() {
         return tratamiento;
     }
-
     public void setTratamiento(String tratamiento) {
         this.tratamiento = tratamiento;
     }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public int getCodigo_facultativo() {
+        return codigo_facultativo;
+    }
+    public void setCodigo_facultativo(int codigo_facultativo) {
+        this.codigo_facultativo = codigo_facultativo;
+    }
+
 }
