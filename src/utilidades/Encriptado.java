@@ -9,5 +9,10 @@ package utilidades;
  * @author ikerr
  */
 public class Encriptado {
-    
+  // Asegúrate de que diga "public static"
+    public static String desencriptar(String datosCifrados) {
+        // Tu lógica de la Fase 1 aquí
+        return ""; 
+    }
+  
 }

@@ -1,75 +1,68 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package bbdd;
 
-/**
- *
- * @author ikerr
- */
-
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import javax.swing.JOptionPane;
+import utilidades.Encriptado;
+import utilidades.Utilidades; // Cambiado de Sesion a Utilidades
 
-/**
- * Gestión de la conexión a la base de datos para la aplicación Consultorio.
- */
 public class Conexion {
 
-    // Datos de conexión según la documentación y capturas
-    private static final String SERVIDOR = "145.14.151.1";
-    private static final String BBDD = "u812167471_consultorio25";
-    private static final String USUARIO = "u812167471_consultorio25";
-    private static final String PASS = "2025-Consultorio";
-    
-    // URL de conexión con parámetros para evitar errores de zona horaria y SSL
+    private static final String SERVIDOR = "127.0.0.1:3307"; 
+    private static final String BBDD = "consultorio";        
+    private static final String USUARIO = "root";            
+    private static final String PASS = "";                   
+
     private static final String URL = "jdbc:mysql://" + SERVIDOR + "/" + BBDD + "?useSSL=false&serverTimezone=UTC";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
 
     private static Connection conexion = null;
 
-    /**
-     * Método para establecer la conexión con el servidor MySQL.
-     * @return Connection objeto de conexión activo.
-     */
     public static Connection conectar() {
         try {
-            // Cargar el driver JDBC
             Class.forName(DRIVER);
-            
-            // Intentar conectar con las credenciales
             conexion = DriverManager.getConnection(URL, USUARIO, PASS);
-            
-            System.out.println("ÉXITO: Conexión establecida con " + BBDD);
-            
-        } catch (ClassNotFoundException e) {
-            JOptionPane.showMessageDialog(null, "Error: No se encontró el driver de MySQL.\n" + e.getMessage(), 
-                    "Error de Driver", JOptionPane.ERROR_MESSAGE);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error SQL: No se pudo conectar a la base de datos.\n" + e.getMessage(), 
-                    "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        } catch (ClassNotFoundException | SQLException e) {
+            System.err.println("Error de conexión: " + e.getMessage());
         }
-        
         return conexion;
     }
 
-    /**
-     * Método para cerrar la conexión activa y liberar recursos.
-     */
-    public static void cerrarConexion() {
-        if (conexion != null) {
-            try {
-                if (!conexion.isClosed()) {
-                    conexion.close();
-                    System.out.println("INFO: Conexión cerrada correctamente.");
-                }
-            } catch (SQLException e) {
-                System.err.println("Error al intentar cerrar la conexión: " + e.getMessage());
+    public static boolean Acceder(String user, String passPlana) {
+        String sql = "SELECT contrasenya FROM personal WHERE usuario = ?";
+        try (Connection con = conectar(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, user);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return passPlana.equals(Encriptado.desencriptar(rs.getString("contrasenya")));
             }
-        }
+        } catch (SQLException e) { e.printStackTrace(); }
+        return false;
+    }
+
+    public static void RescataDatosUserLogado(String user) {
+        String sql = "SELECT nombre, apellidos, numero_colegiado, tipo FROM personal WHERE usuario = ?";
+        try (Connection con = conectar(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, user);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                // Ahora usamos Utilidades en lugar de Sesion
+                Utilidades.nombre = Encriptado.desencriptar(rs.getString("nombre")) + " " + 
+                                   Encriptado.desencriptar(rs.getString("apellidos"));
+                Utilidades.colegiado = rs.getString("numero_colegiado");
+                Utilidades.tipo = rs.getString("tipo");
+                Utilidades.usuario = user;
+            }
+        } catch (SQLException e) { e.printStackTrace(); }
+    }
+
+    public static ResultSet CargarCitas(String numColegiado, String tipoConsulta) {
+        Connection con = conectar();
+        String sql = "SELECT nombre_paciente, dia, hora FROM citas WHERE numero_colegiado = ? AND tipo_consulta = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, numColegiado);
+            ps.setString(2, tipoConsulta);
+            return ps.executeQuery();
+        } catch (SQLException e) { return null; }
     }
 }

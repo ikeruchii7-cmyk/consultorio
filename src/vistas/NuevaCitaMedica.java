@@ -8,14 +8,14 @@ package vistas;
  *
  * @author ikerr
  */
-public class NuevaCitaEnfermeria extends javax.swing.JDialog {
+public class NuevaCitaMedica extends javax.swing.JDialog {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(NuevaCitaEnfermeria.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(NuevaCitaMedica.class.getName());
 
     /**
-     * Creates new form NuevaCitaEnfermeria
+     * Creates new form NuevaCita
      */
-    public NuevaCitaEnfermeria(java.awt.Frame parent, boolean modal) {
+    public NuevaCitaMedica(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -38,10 +38,10 @@ public class NuevaCitaEnfermeria extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         campoNomApe = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         comboHora = new javax.swing.JComboBox<>();
         botonRegistrar = new javax.swing.JButton();
-        comboFecha = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -53,7 +53,7 @@ public class NuevaCitaEnfermeria extends javax.swing.JDialog {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel2.setText("NUEVA CITA ENFERMERIA");
+        jLabel2.setText("NUEVA CITA MEDICA");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -62,20 +62,18 @@ public class NuevaCitaEnfermeria extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addGap(72, 72, 72))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel2)
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
                 .addContainerGap(16, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap())
         );
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -100,8 +98,6 @@ public class NuevaCitaEnfermeria extends javax.swing.JDialog {
         botonRegistrar.setForeground(new java.awt.Color(255, 255, 255));
         botonRegistrar.setText("Resgistrar");
 
-        comboFecha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Una semana", "Dos semanas", "Un mes" }));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -119,10 +115,10 @@ public class NuevaCitaEnfermeria extends javax.swing.JDialog {
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(campoNomApe, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(comboFecha, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(comboHora, javax.swing.GroupLayout.Alignment.LEADING, 0, 132, Short.MAX_VALUE))))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comboHora, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(campoDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(240, 240, 240)
                         .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -140,11 +136,11 @@ public class NuevaCitaEnfermeria extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoNomApe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(comboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(comboHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -192,7 +188,7 @@ public class NuevaCitaEnfermeria extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                NuevaCitaEnfermeria dialog = new NuevaCitaEnfermeria(new javax.swing.JFrame(), true);
+                NuevaCitaMedica dialog = new NuevaCitaMedica(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -208,8 +204,8 @@ public class NuevaCitaEnfermeria extends javax.swing.JDialog {
     private javax.swing.JButton botonRegistrar;
     private javax.swing.JTextField campoDNI;
     private javax.swing.JTextField campoNomApe;
-    private javax.swing.JComboBox<String> comboFecha;
     private javax.swing.JComboBox<String> comboHora;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

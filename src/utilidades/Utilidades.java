@@ -4,10 +4,9 @@
  */
 package utilidades;
 
-/**
- *
- * @author ikerr
- */
 public class Utilidades {
-    
+    public static String nombre;
+    public static String colegiado;
+    public static String tipo;
+    public static String usuario;
 }
